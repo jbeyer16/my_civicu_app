@@ -63,7 +63,7 @@ def parse_args(args):
     """
     return None, args
     parser = argparse.ArgumentParser() 
-    description="Just a greeting recognizer.")
+    description="Just a greeting recognizer."
     parser.add_argument(
         '--version',
         action='version',
