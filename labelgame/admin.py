@@ -16,4 +16,4 @@ class ImageAdmin(admin.ModelAdmin):
 
 admin.site.register(Image, ImageAdmin)
 admin.site.register(UserLabel)
-admin.stie.register(TotalVotes)
+admin.site.register(TotalVotes)
