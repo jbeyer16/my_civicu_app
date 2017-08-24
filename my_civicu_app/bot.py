@@ -1,19 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This is a skeleton file that can serve as a starting point for a Python
-console script. To run this script uncomment the following line in the
-entry_points section in setup.cfg:
+The bot script runs a simple chatbot that will respond to greetings on the
+command line.
 
-    console_scripts =
-     fibonacci = my_civicu_app.skeleton:run
+To install this bot run 'python setup.py install' which will install the
+'bot'
 
-Then run `python setup.py install` which will install the command `fibonacci`
-inside your current environment.
-Besides console scripts, the header (i.e. until _logger...) of this file can
-also be used as template for Python modules.
+A typical interaction with this bot would be:
+$ (Shell Prompt)
 
-Note: This skeleton file can be safely removed if not needed!
+$ bot Hi
+Hi hobs, how are you?
+$ bot Hey
+Hi hobs, how are you?
+$ bot Inspire me!
+Failure is a part of the process. Each time you fail you are one step closer to
+    success
 """
 from __future__ import division, print_function, absolute_import
 
@@ -30,20 +33,23 @@ __license__ = "mit"
 _logger = logging.getLogger(__name__)
 
 
-def fib(n):
-    """Fibonacci example function
+def recognize_greeting(statement):
+    """ Recognizes if string statement starts with Hi or Hey or any other
+    greeting.
 
     Args:
-      n (int): integer
+        statement (str): a string from the commandline from the user
 
     Returns:
-      int: n-th Fibonacci number
+        bool: True if statement is a greeting. False otherwise.
+
+    >>> recognize_greeting('hi')
+    True
     """
-    assert n > 0
-    a, b = 1, 1
-    for i in range(n-1):
-        a, b = b, a+b
-    return a
+    statement = statement.lower()
+    if statement.startswith('hi') or statement.startswith('hey'):
+        return True
+    return False
 
 
 def parse_args(args):
@@ -55,17 +61,18 @@ def parse_args(args):
     Returns:
       :obj:`argparse.Namespace`: command line parameters namespace
     """
-    parser = argparse.ArgumentParser(
-        description="Just a Fibonnaci demonstration")
+    return None, args
+    parser = argparse.ArgumentParser() 
+    description="Just a greeting recognizer.")
     parser.add_argument(
         '--version',
         action='version',
         version='my_civicu_app {ver}'.format(ver=__version__))
     parser.add_argument(
-        dest="n",
-        help="n-th Fibonacci number",
-        type=int,
-        metavar="INT")
+        '--uplad',
+        dest="upload",
+        help="Path to image file for upload to labeler API",
+        type=str)
     parser.add_argument(
         '-v',
         '--verbose',
@@ -80,7 +87,7 @@ def parse_args(args):
         help="set loglevel to DEBUG",
         action='store_const',
         const=logging.DEBUG)
-    return parser.parse_args(args)
+    return parser.parse_known_args(args)
 
 
 def setup_logging(loglevel):
@@ -94,19 +101,49 @@ def setup_logging(loglevel):
                         format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
 
 
+# class Match:
+
+#     ___init__(self, groups):
+#         self.group_list = groups or []
+
+#     def groups():
+#         return self.group_list
+
+
+# class Matcher:
+#     """A pseudo-regex object with only a match method, and a hard-coded 
+#     decision tree (FSM)."""
+
+#     def match(statement):
+#         """ Return a Match object with a 1-len list of "groups" containing the 
+#         name that the user addressed """
+#         words = statement.lower().strip().split()
+#         if not len(words):
+#             return Match([])
+#         w0 = words[0]
+#         if len(w0) > 1 and w0[0] == 'h':
+#             if w0[1] == 'i':
+#                 return Match(words[1] if len(words) > 1 else [''])
+#             if len(w0) > 2 and w0[1] == 'e' and w0[2] == 'y':
+#                 return Match(words[1] if len(words) > 1 else [''])
+#         return []
+
 def main(args):
     """Main entry point allowing external calls
 
     Args:
       args ([str]): command line parameter list
     """
-    args = parse_args(args)
-    setup_logging(args.loglevel)
-    _logger.debug("Starting crazy calculations...")
-    print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
-    _logger.info("Script ends here")
+    args, unknown = parse_args(args)
+    # setup_logging(args.loglevel)
+    # _logger.debug("Starting crazy calculations...")
+    print("{}".format(recognize_greeting(' '.join(unknown))))
+    if args.upload:
+        upload(args.upload)
+        # UPLOAD FUNC TO DO POST REQUEST
+    # _logger.info("Script ends here")
 
-
+# def upload
 def run():
     """Entry point for console_scripts
     """
