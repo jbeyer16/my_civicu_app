@@ -1,4 +1,12 @@
-# Add your requirements here like:
-# numpy
-# scipy>=0.9
-django
+certifi==2017.7.27.1
+chardet==3.0.4
+Django==1.11.4
+django-extensions==1.8.1
+djangorestframework==3.6.3
+idna==2.5
+my-civicu-app==0.0.post0.dev1+ne707a2a.dirty
+numpy==1.13.1
+pytz==2017.2
+requests==2.18.3
+six==1.10.0
+urllib3==1.22
