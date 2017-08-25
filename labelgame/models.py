@@ -3,6 +3,7 @@
 
 from django.contrib.auth.models import User
 from django.db import models
+import jsonfield
 # from django.utils import timezone
 
 
@@ -48,6 +49,8 @@ class Image(models.Model):
                                       default=None)
     #updated_date = models.DateTimeField('Date photo was changed.', 
     #                                    auto_now=True)
+    #info = jsonfield.JSONField("Metadata about the image (usually from the" +
+    #                           "EXIF header)", null=True)
 
     def __str__(self):
         return str(self.imgfile) + ' ' + str(self.caption)
