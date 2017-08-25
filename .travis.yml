@@ -22,7 +22,7 @@ install:
   - source tests/travis_install.sh
   - pip install --upgrade pip
   - pip install -r requirements.txt
-  - pip install -r test_requirements.txt
+  - pip install -r test-requirements.txt
 before_script:
   - git config --global user.email "jeff.beyer@gmail.com"
   - git config --global user.name "Jeff Beyer"
