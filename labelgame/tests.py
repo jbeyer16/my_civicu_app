@@ -1,10 +1,11 @@
-import os
 import datetime
+import doctest
+import os
 
+from my_civicu_app import bot
+import my_civicu_app.settings
 from django.test import TestCase
 from django.utils import timezone
-
-import my_civicu_app.settings
 
 from .models import Image
 
@@ -23,10 +24,17 @@ class ImageModelTest(TestCase):
                                                                    * 2.5)),
                                     imgfile=os.path.join(MEDIA_ROOT,
                                                          'test_image.jpg'),
-                                    #uploaded_date=timezone.now(),
+                                    # uploaded_date=timezone.now(),
                                     created_date=timezone.now())
 
     def test_image_creation(self):
         image = self.create_image()
         self.assertTrue(isinstance(image, Image))
         self.assertEqual(self.caption, image.caption)
+
+
+class BotTest(TestCase):
+
+    def test_doctests(self):
+        results = doctest.testmod(bot)
+        self.assertEqual(results.failed, 0)
