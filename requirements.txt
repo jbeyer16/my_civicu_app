@@ -9,7 +9,6 @@ djangorestframework==3.6.3
 doctest2==0.1
 idna==2.5
 jsonfield==2.0.2
-my-civicu-app==0.0.post0.dev13+ncea73cc.dirty
 numpy==1.13.1
 py==1.4.34
 pytest==3.2.1
