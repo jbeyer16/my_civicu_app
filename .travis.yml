@@ -22,6 +22,7 @@ install:
   - source tests/travis_install.sh
   - pip install --upgrade pip
   - pip install -r requirements.txt
+  - pip install -r test_requirements.txt
 before_script:
   - git config --global user.email "jeff.beyer@gmail.com"
   - git config --global user.name "Jeff Beyer"
@@ -29,6 +30,7 @@ script:
   - python manage.py test
   - python setup.py test
 after_success:
+  - codecov
   - if [[ "$COVERAGE" == "true" ]]; then coveralls || echo "failed"; fi
 cache:
   - apt
