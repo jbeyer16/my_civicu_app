@@ -7,6 +7,7 @@ Django==1.11.4
 django-extensions==1.8.1
 djangorestframework==3.6.3
 doctest2==0.1
+gunicorn==19.7.1
 idna==2.5
 jsonfield==2.0.2
 numpy==1.13.1
