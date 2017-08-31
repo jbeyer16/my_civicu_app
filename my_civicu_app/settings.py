@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3(8gto_wjgghe5oy#s!(r=ij$-jjj=-#b4vbqttc^-6!o=p4_2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io']
 
 
 # Application definition
