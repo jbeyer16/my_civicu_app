@@ -11,7 +11,7 @@ gunicorn==19.7.1
 idna==2.5
 jsonfield==2.0.2
 numpy==1.13.1
-py==1.4.34
+py==1.10.0
 pytest==3.2.1
 pytest-cov==2.5.1
 pytz==2017.2
